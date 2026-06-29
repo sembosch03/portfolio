@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Agrici — Software Developer | Websites & automatisering voor MKB</title>
+<meta name="description" content="Software developer uit Hoofddorp. Ik bouw snelle websites, automatiseringen en bugfixes voor lokale ondernemers. Vaste prijs, geen abonnement.">
+
+<!-- ====== OPEN GRAPH (voor delen op WhatsApp/LinkedIn) ====== -->
+<meta property="og:title" content="Daniel Agrici — Software Developer">
+<meta property="og:description" content="Websites & automatisering voor MKB. Vaste prijs, snelle oplevering.">
+<meta property="og:type" content="website">
+
+<style>
+  /* ============ DESIGN TOKENS ============ */
+  :root {
+    --bg:        #0c0e14;
+    --bg-soft:   #13161f;
+    --surface:   #181c28;
+    --border:    #262b3a;
+    --text:      #eef1f7;
+    --text-dim:  #9aa3b8;
+    --accent:    #6ee7ff;
+    --accent-2:  #a78bfa;
+    --accent-grad: linear-gradient(120deg, #6ee7ff 0%, #a78bfa 100%);
+    --radius:    16px;
+    --maxw:      1080px;
+    --ease:      cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+  section { padding: clamp(60px, 9vw, 120px) 0; }
+
+  /* ambient glow */
+  body::before {
+    content:""; position: fixed; inset:0; z-index:-1; pointer-events:none;
+    background:
+      radial-gradient(600px 400px at 80% -5%, rgba(167,139,250,.18), transparent 70%),
+      radial-gradient(700px 500px at 0% 10%, rgba(110,231,255,.12), transparent 70%);
+  }
+
+  /* ============ NAV ============ */
+  nav {
+    position: sticky; top:0; z-index:50;
+    backdrop-filter: blur(12px);
+    background: rgba(12,14,20,.7);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .logo { font-weight:800; letter-spacing:-.02em; font-size:1.1rem; }
+  .logo span { background: var(--accent-grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .nav-links { display:flex; gap:28px; font-size:.95rem; }
+  .nav-links a { color: var(--text-dim); transition: color .2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    padding:9px 18px; border-radius:999px; background:var(--accent-grad);
+    color:#0c0e14 !important; font-weight:700; font-size:.9rem;
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+  }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow:0 8px 24px rgba(110,231,255,.3); }
+  @media(max-width:640px){ .nav-links a:not(.nav-cta){ display:none; } }
+
+  /* ============ HERO ============ */
+  .hero { padding-top: clamp(50px, 8vw, 90px); }
+  .badge {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:6px 14px; border:1px solid var(--border); border-radius:999px;
+    font-size:.82rem; color:var(--text-dim); margin-bottom:28px;
+  }
+  .badge .dot { width:8px; height:8px; border-radius:50%; background:#34d399; box-shadow:0 0 8px #34d399; }
+  .hero h1 {
+    font-size: clamp(2.4rem, 1rem + 6vw, 5rem);
+    line-height:1.02; letter-spacing:-.03em; font-weight:800; margin-bottom:24px;
+  }
+  .hero h1 em { font-style:normal; background:var(--accent-grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .hero p.lead { font-size: clamp(1.05rem, .95rem + .5vw, 1.3rem); color:var(--text-dim); max-width:620px; margin-bottom:36px; }
+  .hero-actions { display:flex; gap:14px; flex-wrap:wrap; }
+  .btn {
+    padding:14px 26px; border-radius:12px; font-weight:700; font-size:1rem;
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .2s;
+    display:inline-flex; align-items:center; gap:10px;
+  }
+  .btn-primary { background:var(--accent-grad); color:#0c0e14; }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(167,139,250,.35); }
+  .btn-ghost { border:1px solid var(--border); color:var(--text); }
+  .btn-ghost:hover { border-color:var(--accent); transform:translateY(-2px); }
+
+  .stats { display:flex; gap:40px; margin-top:56px; flex-wrap:wrap; }
+  .stat .num { font-size:1.8rem; font-weight:800; letter-spacing:-.02em; }
+  .stat .lbl { font-size:.85rem; color:var(--text-dim); }
+
+  /* ============ SECTION HEADINGS ============ */
+  .sec-head { margin-bottom:48px; }
+  .sec-head .kicker { color:var(--accent); font-weight:700; font-size:.85rem; letter-spacing:.08em; text-transform:uppercase; }
+  .sec-head h2 { font-size:clamp(1.8rem,1rem+3vw,2.8rem); letter-spacing:-.02em; margin-top:10px; }
+  .sec-head p { color:var(--text-dim); max-width:560px; margin-top:12px; }
+
+  /* ============ SERVICES ============ */
+  .grid { display:grid; gap:20px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
+  .card {
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:32px 28px; transition: transform .3s var(--ease), border-color .3s, background .3s;
+    position:relative; overflow:hidden;
+  }
+  .card:hover { transform:translateY(-6px); border-color:var(--accent); }
+  .card .icon { font-size:1.8rem; margin-bottom:18px; }
+  .card h3 { font-size:1.25rem; margin-bottom:10px; letter-spacing:-.01em; }
+  .card p { color:var(--text-dim); font-size:.95rem; margin-bottom:18px; }
+  .card .price { font-weight:800; font-size:1.1rem; background:var(--accent-grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .card ul { list-style:none; margin-top:16px; display:flex; flex-direction:column; gap:8px; }
+  .card ul li { font-size:.88rem; color:var(--text-dim); padding-left:22px; position:relative; }
+  .card ul li::before { content:"✓"; position:absolute; left:0; color:var(--accent); font-weight:800; }
+
+  /* ============ PROJECTS ============ */
+  .proj-card { display:block; background:var(--bg-soft); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; transition:transform .3s var(--ease), border-color .3s; cursor:pointer; }
+  .proj-card .demo-link { display:inline-block; margin-top:14px; color:var(--accent); font-weight:700; font-size:.85rem; }
+  .proj-card:hover { transform:translateY(-6px); border-color:var(--accent-2); }
+  .proj-thumb { aspect-ratio:16/10; background:linear-gradient(135deg, #1c2030, #13161f); display:flex; align-items:center; justify-content:center; font-size:2.4rem; border-bottom:1px solid var(--border); }
+  .proj-body { padding:24px; }
+  .proj-body .tag { font-size:.78rem; color:var(--accent); text-transform:uppercase; letter-spacing:.06em; font-weight:700; }
+  .proj-body h3 { font-size:1.2rem; margin:8px 0 8px; }
+  .proj-body p { color:var(--text-dim); font-size:.92rem; }
+  .proj-tech { display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; }
+  .proj-tech span { font-size:.75rem; padding:4px 10px; border:1px solid var(--border); border-radius:999px; color:var(--text-dim); }
+
+  /* ============ ABOUT ============ */
+  .about-grid { display:grid; grid-template-columns:1fr 1.3fr; gap:48px; align-items:center; }
+  @media(max-width:760px){ .about-grid{ grid-template-columns:1fr; } }
+  .avatar { aspect-ratio:1; border-radius:24px; background:var(--accent-grad); display:flex; align-items:center; justify-content:center; font-size:4rem; font-weight:800; color:#0c0e14; max-width:280px; }
+  .about-text h2 { font-size:clamp(1.6rem,1rem+2.5vw,2.4rem); letter-spacing:-.02em; margin-bottom:16px; }
+  .about-text p { color:var(--text-dim); margin-bottom:16px; }
+  .skill-tags { display:flex; gap:10px; flex-wrap:wrap; margin-top:20px; }
+  .skill-tags span { font-size:.85rem; padding:7px 14px; background:var(--surface); border:1px solid var(--border); border-radius:999px; }
+
+  /* ============ CONTACT ============ */
+  .contact { text-align:center; }
+  .contact-box { background:var(--surface); border:1px solid var(--border); border-radius:24px; padding:clamp(40px,6vw,72px) 32px; position:relative; overflow:hidden; }
+  .contact-box::before { content:""; position:absolute; inset:0; background:radial-gradient(500px 300px at 50% 0%, rgba(167,139,250,.15), transparent 70%); pointer-events:none; }
+  .contact h2 { font-size:clamp(1.8rem,1rem+3vw,3rem); letter-spacing:-.02em; margin-bottom:16px; }
+  .contact p { color:var(--text-dim); max-width:480px; margin:0 auto 32px; }
+  .contact-actions { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+  /* ============ FOOTER ============ */
+  footer { border-top:1px solid var(--border); padding:32px 0; color:var(--text-dim); font-size:.88rem; }
+  footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+
+  /* reveal on scroll */
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal.in { opacity:1; transform:none; }
+  @media(prefers-reduced-motion:reduce){ .reveal{opacity:1;transform:none;} html{scroll-behavior:auto;} }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="wrap">
+    <div class="logo">Daniel<span>.dev</span></div>
+    <div class="nav-links">
+      <a href="#diensten">Diensten</a>
+      <a href="#werk">Werk</a>
+      <a href="#over">Over mij</a>
+      <a href="#contact" class="nav-cta">Neem contact op</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="badge"><span class="dot"></span> Beschikbaar voor nieuwe projecten</div>
+    <h1>Ik bouw <em>snelle websites</em> &amp; slimme automatiseringen voor lokale ondernemers.</h1>
+    <p class="lead">Software developer uit Hoofddorp. Vaste prijs, geen abonnement, oplevering binnen een week. Jij levert je logo aan — ik regel de rest.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Start een project →</a>
+      <a href="#werk" class="btn btn-ghost">Bekijk mijn werk</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="num">&lt; 1 week</div><div class="lbl">gem. oplevertijd</div></div>
+      <div class="stat"><div class="num">Vaste prijs</div><div class="lbl">geen verrassingen</div></div>
+      <div class="stat"><div class="num">Hoofddorp</div><div class="lbl">lokaal &amp; bereikbaar</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ DIENSTEN ============ -->
+<section id="diensten">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Wat ik doe</div>
+      <h2>Diensten</h2>
+      <p>Concreet werk met een vaste prijs. Helft bij start, helft bij oplevering.</p>
+    </div>
+    <div class="grid">
+      <div class="card reveal">
+        <div class="icon">🌐</div>
+        <h3>Website / landingspagina</h3>
+        <p>Een snelle, mobiel-vriendelijke site waarmee klanten je via Google vinden.</p>
+        <div class="price">vanaf €500</div>
+        <ul>
+          <li>Mobiel-vriendelijk &amp; snel</li>
+          <li>Vindbaar in Google (SEO-basis)</li>
+          <li>Contactformulier</li>
+          <li>Tekst &amp; opzet inbegrepen</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <div class="icon">⚙️</div>
+        <h3>Automatisering</h3>
+        <p>Saai handwerk wegautomatiseren: offertes, e-mails, voorraad, koppelingen.</p>
+        <div class="price">vanaf €500</div>
+        <ul>
+          <li>Tijd besparen, fouten weg</li>
+          <li>Koppeling tussen je tools</li>
+          <li>Scripts &amp; mini-tools op maat</li>
+          <li>Uitleg hoe je het gebruikt</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <div class="icon">🛠️</div>
+        <h3>Bugfix &amp; onderhoud</h3>
+        <p>Bestaande site/app kapot, traag of niet mobiel? Ik fix het snel.</p>
+        <div class="price">vanaf €300</div>
+        <ul>
+          <li>Snelle diagnose</li>
+          <li>Mobiel- &amp; snelheidsfixes</li>
+          <li>Updates &amp; kleine aanpassingen</li>
+          <li>Heldere terugkoppeling</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WERK / PROJECTEN ============ -->
+<section id="werk" style="background:var(--bg-soft);">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">Portfolio</div>
+      <h2>Recent werk</h2>
+      <p>Een greep uit mijn projecten. <!-- VERVANG deze cases zodra je echte klanten hebt --></p>
+    </div>
+    <div class="grid">
+      <a href="demos/restaurant/index.html" target="_blank" class="proj-card reveal">
+        <div class="proj-thumb">🍽️</div>
+        <div class="proj-body">
+          <div class="tag">Website</div>
+          <h3>Restaurant-landingspagina</h3>
+          <p>Mobiel-vriendelijke one-pager met menu, openingstijden en werkende reserveringsknop.</p>
+          <div class="proj-tech"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+          <span class="demo-link">Bekijk live demo →</span>
+        </div>
+      </a>
+      <a href="demos/offerte/index.html" target="_blank" class="proj-card reveal">
+        <div class="proj-thumb">📊</div>
+        <div class="proj-body">
+          <div class="tag">Automatisering</div>
+          <h3>Offerte-generator</h3>
+          <p>Werkende tool die klantgegevens live omzet in een nette, printbare PDF-offerte.</p>
+          <div class="proj-tech"><span>JavaScript</span><span>Automatisering</span></div>
+          <span class="demo-link">Bekijk live demo →</span>
+        </div>
+      </a>
+      <a href="demos/sportschool/index.html" target="_blank" class="proj-card reveal">
+        <div class="proj-thumb">💪</div>
+        <div class="proj-body">
+          <div class="tag">Website</div>
+          <h3>Sportschool-site</h3>
+          <p>Strakke site met lesrooster, abonnementen en werkend inschrijfformulier.</p>
+          <div class="proj-tech"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+          <span class="demo-link">Bekijk live demo →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OVER MIJ ============ -->
+<section id="over">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="avatar reveal">DA</div>
+      <div class="about-text reveal">
+        <h2>Hoi, ik ben Daniel 👋</h2>
+        <p>22 jaar, software developer uit Hoofddorp, vers afgestudeerd en klaar om te bouwen. Ik help lokale ondernemers online te komen met sites en tools die écht werken — geen ingewikkeld gedoe, geen maandelijkse kosten.</p>
+        <p>Snel inzetbaar, technisch onderlegd en gek op problemen oplossen. Eén vaste prijs, duidelijke afspraken, oplevering binnen een week.</p>
+        <div class="skill-tags">
+          <span>HTML / CSS</span><span>JavaScript</span><span>Python</span><span>React</span><span>Automatisering</span><span>API's</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="contact-box reveal">
+      <h2>Klaar om te starten?</h2>
+      <p>Vertel kort wat je nodig hebt — ik reageer binnen 24 uur met een vaste prijs en planning.</p>
+      <div class="contact-actions">
+        <!-- VUL JE EIGEN GEGEVENS IN bij de links hieronder -->
+        <a href="mailto:sembosch9@gmail.com?subject=Project%20aanvraag" class="btn btn-primary">✉️ Mail mij</a>
+        <a href="https://wa.me/31621971441" target="_blank" rel="noopener" class="btn btn-ghost">💬 WhatsApp</a>
+        <a href="tel:+31621971441" class="btn btn-ghost">📞 Bel mij</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div>© <span id="year"></span> Daniel Agrici — Software Developer, Hoofddorp</div>
+    <div>Gebouwd met code, niet met een templatebouwer.</div>
+  </div>
+</footer>
+
+<script>
+  // jaartal
+  document.getElementById('year').textContent = new Date().getFullYear();
+  // reveal-on-scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:0.12 });
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

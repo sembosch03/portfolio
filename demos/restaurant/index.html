@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bistro Vennep — Italiaans restaurant in Nieuw-Vennep</title>
+<meta name="description" content="Bistro Vennep — verse Italiaanse keuken in Nieuw-Vennep. Bekijk het menu, openingstijden en reserveer online.">
+<style>
+  :root{
+    --bg:#fbf7f0; --ink:#23170f; --muted:#7a6a5a; --accent:#b4452f; --accent-dark:#8f3322;
+    --card:#fff; --border:#e7ddd0; --gold:#caa45a;
+    --serif:"Georgia","Times New Roman",serif;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px;}
+  h1,h2,h3{font-family:var(--serif);letter-spacing:-.01em;}
+  section{padding:clamp(56px,8vw,96px) 0;}
+
+  nav{position:sticky;top:0;z-index:40;background:rgba(251,247,240,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px;}
+  .brand{font-family:var(--serif);font-size:1.35rem;font-weight:700;}
+  .brand small{display:block;font-family:sans-serif;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);font-weight:700;}
+  .nlinks{display:flex;gap:26px;font-size:.92rem;}
+  .nlinks a{color:var(--muted);transition:color .2s;}
+  .nlinks a:hover{color:var(--accent);}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:6px;font-weight:700;font-size:.95rem;transition:transform .25s var(--ease),background .2s,box-shadow .25s;}
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-primary:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 8px 22px rgba(180,69,47,.3);}
+  .btn-ghost{border:1.5px solid var(--accent);color:var(--accent);}
+  .btn-ghost:hover{background:var(--accent);color:#fff;}
+  @media(max-width:680px){.nlinks{display:none;}}
+
+  .hero{position:relative;background:linear-gradient(rgba(35,23,15,.62),rgba(35,23,15,.45)),radial-gradient(circle at 30% 20%,#5a2d1e,#231711);color:#fff;text-align:center;}
+  .hero .wrap{padding:clamp(90px,14vw,160px) 22px;}
+  .hero .eyebrow{color:var(--gold);letter-spacing:.3em;text-transform:uppercase;font-size:.8rem;font-weight:700;margin-bottom:18px;}
+  .hero h1{font-size:clamp(2.6rem,1rem+7vw,5.2rem);line-height:1.02;margin-bottom:20px;}
+  .hero p{font-size:clamp(1.05rem,.95rem+.6vw,1.3rem);color:#f0e6d8;max-width:540px;margin:0 auto 34px;}
+  .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+  .intro{text-align:center;}
+  .intro .eyebrow{color:var(--gold);letter-spacing:.25em;text-transform:uppercase;font-size:.78rem;font-weight:700;}
+  .intro h2{font-size:clamp(1.8rem,1rem+3vw,2.8rem);margin:12px 0 16px;}
+  .intro p{color:var(--muted);max-width:600px;margin:0 auto;}
+
+  .menu{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 56px;margin-top:40px;}
+  @media(max-width:680px){.menu-grid{grid-template-columns:1fr;}}
+  .dish{display:flex;justify-content:space-between;gap:14px;padding:14px 0;border-bottom:1px dotted var(--border);}
+  .dish .d-name{font-family:var(--serif);font-size:1.1rem;}
+  .dish .d-desc{font-size:.85rem;color:var(--muted);}
+  .dish .d-price{font-family:var(--serif);font-weight:700;color:var(--accent);white-space:nowrap;}
+  .cat-title{grid-column:1/-1;font-family:var(--serif);font-size:1.4rem;color:var(--gold);margin-top:24px;border-bottom:2px solid var(--gold);padding-bottom:6px;}
+
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+  @media(max-width:760px){.info-grid{grid-template-columns:1fr;}}
+  .panel{background:#fff;border:1px solid var(--border);border-radius:12px;padding:32px;}
+  .panel h3{font-size:1.4rem;margin-bottom:18px;}
+  .hours li{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);list-style:none;}
+  .hours li:last-child{border:none;}
+  .hours .day{color:var(--muted);}
+  form label{display:block;font-size:.85rem;font-weight:600;margin:14px 0 6px;}
+  form input,form select{width:100%;padding:11px 13px;border:1px solid var(--border);border-radius:7px;font-size:.95rem;font-family:inherit;background:var(--bg);}
+  form input:focus,form select:focus{outline:none;border-color:var(--accent);}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .confirm{margin-top:16px;padding:14px;border-radius:8px;background:#eef6ec;border:1px solid #bcdcb4;color:#2f6b27;font-size:.9rem;display:none;}
+  .confirm.show{display:block;}
+
+  footer{background:var(--ink);color:#cdbfae;text-align:center;padding:40px 22px;font-size:.88rem;}
+
+  .demo-flag{position:fixed;bottom:14px;left:14px;z-index:99;background:var(--ink);color:#fff;padding:8px 14px;border-radius:999px;font-size:.75rem;opacity:.9;}
+  .demo-flag a{color:var(--gold);font-weight:700;}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <div class="brand">Bistro Vennep<small>Cucina Italiana</small></div>
+  <div class="nlinks">
+    <a href="#menu">Menu</a><a href="#info">Openingstijden</a><a href="#reserveer">Reserveren</a>
+  </div>
+  <a href="#reserveer" class="btn btn-primary">Reserveer</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Sinds 2018 · Nieuw-Vennep</div>
+  <h1>Echte Italiaanse keuken,<br>elke dag vers.</h1>
+  <p>Handgemaakte pasta, houtoven-pizza en een glas wijn op het terras. Welkom bij Bistro Vennep.</p>
+  <div class="hero-actions">
+    <a href="#reserveer" class="btn btn-primary">Tafel reserveren</a>
+    <a href="#menu" class="btn btn-ghost" style="border-color:#fff;color:#fff;">Bekijk het menu</a>
+  </div>
+</div></header>
+
+<section class="intro"><div class="wrap">
+  <div class="eyebrow">Benvenuti</div>
+  <h2>Eten zoals in Italië</h2>
+  <p>Onze chef werkt met dagverse ingrediënten van lokale leveranciers. Geen poespas — gewoon eerlijke gerechten met liefde gemaakt, in een warme sfeer midden in Nieuw-Vennep.</p>
+</div></section>
+
+<section id="menu" class="menu"><div class="wrap">
+  <div class="intro"><div class="eyebrow">La Carta</div><h2>Ons menu</h2></div>
+  <div class="menu-grid">
+    <div class="cat-title">Antipasti</div>
+    <div class="dish"><div><div class="d-name">Bruschetta classica</div><div class="d-desc">Tomaat, knoflook, basilicum</div></div><div class="d-price">€8,50</div></div>
+    <div class="dish"><div><div class="d-name">Carpaccio</div><div class="d-desc">Rund, rucola, parmezaan, pijnboompit</div></div><div class="d-price">€12,50</div></div>
+    <div class="cat-title">Pasta</div>
+    <div class="dish"><div><div class="d-name">Tagliatelle al ragù</div><div class="d-desc">Langzaam gegaarde runderragù</div></div><div class="d-price">€16,50</div></div>
+    <div class="dish"><div><div class="d-name">Spaghetti vongole</div><div class="d-desc">Verse venusschelpen, witte wijn</div></div><div class="d-price">€18,50</div></div>
+    <div class="cat-title">Pizza</div>
+    <div class="dish"><div><div class="d-name">Margherita</div><div class="d-desc">San Marzano, mozzarella, basilicum</div></div><div class="d-price">€12,00</div></div>
+    <div class="dish"><div><div class="d-name">Diavola</div><div class="d-desc">Pittige salami, chili</div></div><div class="d-price">€14,50</div></div>
+    <div class="cat-title">Dolci</div>
+    <div class="dish"><div><div class="d-name">Tiramisù</div><div class="d-desc">Huisgemaakt</div></div><div class="d-price">€7,50</div></div>
+    <div class="dish"><div><div class="d-name">Panna cotta</div><div class="d-desc">Met rood fruit</div></div><div class="d-price">€7,00</div></div>
+  </div>
+</div></section>
+
+<section id="info"><div class="wrap"><div class="info-grid">
+  <div class="panel">
+    <h3>Openingstijden</h3>
+    <ul class="hours">
+      <li><span class="day">Maandag</span><span>Gesloten</span></li>
+      <li><span class="day">Dinsdag – Donderdag</span><span>17:00 – 22:00</span></li>
+      <li><span class="day">Vrijdag – Zaterdag</span><span>16:00 – 23:00</span></li>
+      <li><span class="day">Zondag</span><span>16:00 – 22:00</span></li>
+    </ul>
+    <p style="margin-top:20px;color:var(--muted);font-size:.92rem;">📍 Hoofdweg 123, Nieuw-Vennep<br>📞 0252 — 12 34 56</p>
+  </div>
+  <div class="panel" id="reserveer">
+    <h3>Reserveer een tafel</h3>
+    <form onsubmit="reserveer(event)">
+      <label>Naam</label>
+      <input required placeholder="Je naam">
+      <div class="form-row">
+        <div><label>Datum</label><input type="date" required></div>
+        <div><label>Tijd</label><input type="time" required value="19:00"></div>
+      </div>
+      <label>Aantal personen</label>
+      <select><option>2 personen</option><option>3 personen</option><option>4 personen</option><option>5 personen</option><option>6+ personen</option></select>
+      <button type="submit" class="btn btn-primary" style="width:100%;margin-top:22px;justify-content:center;">Reservering bevestigen</button>
+      <div class="confirm" id="confirm">✓ Bedankt! Je reservering is ontvangen. We bevestigen per telefoon.</div>
+    </form>
+  </div>
+</div></div></section>
+
+<footer>
+  <div style="font-family:Georgia,serif;font-size:1.3rem;color:#fff;margin-bottom:10px;">Bistro Vennep</div>
+  <p>Hoofdweg 123, Nieuw-Vennep · 0252 — 12 34 56</p>
+  <p style="margin-top:10px;opacity:.7;">© <span id="yr"></span> Bistro Vennep</p>
+</footer>
+
+<div class="demo-flag">Demo-project · <a href="../../index.html">← terug naar portfolio</a></div>
+
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  function reserveer(e){e.preventDefault();document.getElementById('confirm').classList.add('show');e.target.querySelector('button').textContent='Verstuurd ✓';}
+</script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PULSE Gym — Sportschool in Hoofddorp</title>
+<meta name="description" content="PULSE Gym Hoofddorp — moderne sportschool met groepslessen, personal training en flexibele abonnementen. Schrijf je in en train je eerste week gratis.">
+<style>
+  :root{
+    --bg:#0a0a0c; --surface:#141418; --surface2:#1c1c22; --border:#2a2a33;
+    --text:#f5f5f7; --muted:#9a9aa5; --accent:#d6ff3f; --accent-d:#b6e016;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px;}
+  section{padding:clamp(56px,8vw,110px) 0;}
+  h1,h2,h3{letter-spacing:-.02em;font-weight:800;text-transform:uppercase;font-style:italic;}
+
+  nav{position:sticky;top:0;z-index:40;background:rgba(10,10,12,.8);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .logo{font-weight:900;font-style:italic;font-size:1.3rem;letter-spacing:-.03em;}
+  .logo b{color:var(--accent);}
+  .nlinks{display:flex;gap:24px;font-size:.9rem;text-transform:uppercase;letter-spacing:.04em;font-weight:600;}
+  .nlinks a{color:var(--muted);transition:color .2s;}
+  .nlinks a:hover{color:var(--text);}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:8px;font-weight:800;font-size:.92rem;text-transform:uppercase;letter-spacing:.03em;transition:transform .25s var(--ease),box-shadow .25s,background .2s;}
+  .btn-primary{background:var(--accent);color:#0a0a0c;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(214,255,63,.35);}
+  .btn-ghost{border:1.5px solid var(--border);color:var(--text);}
+  .btn-ghost:hover{border-color:var(--accent);}
+  @media(max-width:680px){.nlinks{display:none;}}
+
+  .hero{position:relative;overflow:hidden;}
+  .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 400px at 75% 10%,rgba(214,255,63,.12),transparent 70%);}
+  .hero .wrap{padding:clamp(70px,11vw,130px) 22px;position:relative;}
+  .hero .tag{display:inline-block;color:var(--accent);font-weight:800;letter-spacing:.1em;text-transform:uppercase;font-size:.82rem;margin-bottom:20px;}
+  .hero h1{font-size:clamp(2.8rem,1rem+9vw,7rem);line-height:.92;margin-bottom:22px;}
+  .hero h1 span{color:var(--accent);}
+  .hero p{font-size:clamp(1.05rem,.95rem+.6vw,1.3rem);color:var(--muted);max-width:520px;margin-bottom:34px;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+
+  .stats{display:flex;gap:48px;flex-wrap:wrap;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:34px 0;}
+  .stat .n{font-size:2.4rem;font-weight:900;font-style:italic;color:var(--accent);}
+  .stat .l{font-size:.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;}
+
+  .sec-head{margin-bottom:44px;}
+  .sec-head .k{color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.1em;font-size:.82rem;}
+  .sec-head h2{font-size:clamp(2rem,1rem+4vw,3.4rem);margin-top:10px;}
+
+  .sched{background:var(--surface);}
+  .sched-table{width:100%;border-collapse:collapse;margin-top:10px;overflow:hidden;border-radius:12px;}
+  .sched-table th,.sched-table td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--border);font-size:.92rem;}
+  .sched-table th{background:var(--surface2);color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-size:.78rem;}
+  .sched-table td b{font-style:italic;}
+  .sched-table .time{color:var(--accent);font-weight:700;white-space:nowrap;}
+  .pill{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--surface2);border:1px solid var(--border);font-size:.74rem;color:var(--muted);}
+
+  .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
+  .price-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:34px 28px;transition:transform .3s var(--ease),border-color .3s;position:relative;}
+  .price-card:hover{transform:translateY(-6px);border-color:var(--accent);}
+  .price-card.feat{border-color:var(--accent);background:linear-gradient(180deg,rgba(214,255,63,.06),var(--surface));}
+  .price-card.feat::before{content:"Populair";position:absolute;top:-12px;left:28px;background:var(--accent);color:#0a0a0c;font-size:.72rem;font-weight:800;text-transform:uppercase;padding:4px 12px;border-radius:999px;}
+  .price-card h3{font-size:1.3rem;margin-bottom:8px;}
+  .price-card .amt{font-size:2.6rem;font-weight:900;font-style:italic;}
+  .price-card .amt small{font-size:.9rem;color:var(--muted);font-weight:600;font-style:normal;}
+  .price-card ul{list-style:none;margin:20px 0;display:flex;flex-direction:column;gap:10px;}
+  .price-card li{font-size:.9rem;color:var(--muted);padding-left:24px;position:relative;}
+  .price-card li::before{content:"→";position:absolute;left:0;color:var(--accent);font-weight:800;}
+
+  .signup{background:var(--accent);color:#0a0a0c;border-radius:24px;padding:clamp(40px,6vw,64px);display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;}
+  @media(max-width:760px){.signup{grid-template-columns:1fr;}}
+  .signup h2{font-size:clamp(1.8rem,1rem+3vw,3rem);line-height:1;}
+  .signup p{font-weight:600;margin-top:14px;opacity:.85;}
+  .signup form{display:flex;flex-direction:column;gap:12px;}
+  .signup input{padding:14px;border:none;border-radius:10px;font-size:1rem;font-family:inherit;background:#0a0a0c;color:#fff;}
+  .signup input::placeholder{color:#888;}
+  .signup button{background:#0a0a0c;color:var(--accent);padding:15px;border:none;border-radius:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;transition:transform .2s;}
+  .signup button:hover{transform:translateY(-2px);}
+  .ok{display:none;font-weight:800;background:#0a0a0c;color:var(--accent);padding:14px;border-radius:10px;text-align:center;}
+  .ok.show{display:block;}
+
+  footer{border-top:1px solid var(--border);padding:34px 0;color:var(--muted);font-size:.86rem;text-align:center;}
+  .demo-flag{position:fixed;bottom:14px;left:14px;z-index:99;background:var(--surface);border:1px solid var(--border);color:#fff;padding:8px 14px;border-radius:999px;font-size:.75rem;}
+  .demo-flag a{color:var(--accent);font-weight:700;}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <div class="logo">PULSE<b>.</b></div>
+  <div class="nlinks"><a href="#rooster">Rooster</a><a href="#prijzen">Abonnementen</a><a href="#start">Inschrijven</a></div>
+  <a href="#start" class="btn btn-primary">Gratis proefweek</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="tag">Hoofddorp · 24/7 open</div>
+  <h1>Word de <span>sterkste</span> versie van jezelf.</h1>
+  <p>Moderne apparatuur, energieke groepslessen en coaches die je pushen. Eerste week gratis — geen gedoe, geen verplichtingen.</p>
+  <div class="hero-actions">
+    <a href="#start" class="btn btn-primary">Start gratis</a>
+    <a href="#prijzen" class="btn btn-ghost">Bekijk abonnementen</a>
+  </div>
+</div></header>
+
+<div class="wrap"><div class="stats">
+  <div class="stat"><div class="n">1.200+</div><div class="l">Actieve leden</div></div>
+  <div class="stat"><div class="n">40+</div><div class="l">Lessen per week</div></div>
+  <div class="stat"><div class="n">24/7</div><div class="l">Toegang</div></div>
+  <div class="stat"><div class="n">8</div><div class="l">Coaches</div></div>
+</div></div>
+
+<section id="rooster" class="sched"><div class="wrap">
+  <div class="sec-head"><div class="k">Groepslessen</div><h2>Lesrooster</h2></div>
+  <table class="sched-table">
+    <thead><tr><th>Tijd</th><th>Les</th><th>Coach</th><th>Dag</th></tr></thead>
+    <tbody>
+      <tr><td class="time">07:00</td><td><b>Bootcamp</b></td><td>Mark</td><td><span class="pill">Ma / Wo / Vr</span></td></tr>
+      <tr><td class="time">09:30</td><td><b>Spinning</b></td><td>Lisa</td><td><span class="pill">Di / Do</span></td></tr>
+      <tr><td class="time">18:00</td><td><b>CrossFit</b></td><td>Sam</td><td><span class="pill">Ma t/m Vr</span></td></tr>
+      <tr><td class="time">19:00</td><td><b>Yoga &amp; Mobility</b></td><td>Noa</td><td><span class="pill">Di / Do</span></td></tr>
+      <tr><td class="time">20:00</td><td><b>Boksen</b></td><td>Dion</td><td><span class="pill">Wo / Vr</span></td></tr>
+      <tr><td class="time">10:00</td><td><b>Weekend Burn</b></td><td>Lisa</td><td><span class="pill">Za</span></td></tr>
+    </tbody>
+  </table>
+</div></section>
+
+<section id="prijzen"><div class="wrap">
+  <div class="sec-head"><div class="k">Lidmaatschap</div><h2>Abonnementen</h2></div>
+  <div class="price-grid">
+    <div class="price-card">
+      <h3>Flex</h3>
+      <div class="amt">€29<small>/maand</small></div>
+      <ul><li>Maandelijks opzegbaar</li><li>Toegang fitness</li><li>Gratis intake</li></ul>
+      <a href="#start" class="btn btn-ghost" style="width:100%;justify-content:center;">Kies Flex</a>
+    </div>
+    <div class="price-card feat">
+      <h3>Unlimited</h3>
+      <div class="amt">€39<small>/maand</small></div>
+      <ul><li>Alle groepslessen</li><li>24/7 toegang</li><li>Trainingsschema</li><li>1× PT per maand</li></ul>
+      <a href="#start" class="btn btn-primary" style="width:100%;justify-content:center;">Kies Unlimited</a>
+    </div>
+    <div class="price-card">
+      <h3>Student</h3>
+      <div class="amt">€24<small>/maand</small></div>
+      <ul><li>Met studentenpas</li><li>Toegang fitness + lessen</li><li>Daluren</li></ul>
+      <a href="#start" class="btn btn-ghost" style="width:100%;justify-content:center;">Kies Student</a>
+    </div>
+  </div>
+</div></section>
+
+<section id="start"><div class="wrap"><div class="signup">
+  <div>
+    <h2>Train je eerste week gratis.</h2>
+    <p>Vul je gegevens in — we bellen je voor een gratis intake en rondleiding.</p>
+  </div>
+  <form onsubmit="inschrijf(event)">
+    <input required placeholder="Je naam">
+    <input required type="email" placeholder="E-mailadres">
+    <input required type="tel" placeholder="Telefoonnummer">
+    <button type="submit">Claim mijn gratis week</button>
+    <div class="ok" id="ok">✓ Gelukt! We bellen je binnen 1 werkdag.</div>
+  </form>
+</div></div></section>
+
+<footer><div class="wrap">
+  <div class="logo" style="margin-bottom:8px;">PULSE<b>.</b></div>
+  <p>Kruisweg 500, Hoofddorp · 023 — 123 45 67 · 24/7 geopend</p>
+  <p style="margin-top:8px;opacity:.6;">© <span id="yr"></span> PULSE Gym Hoofddorp</p>
+</div></footer>
+
+<div class="demo-flag">Demo-project · <a href="../../index.html">← terug naar portfolio</a></div>
+
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  function inschrijf(e){e.preventDefault();document.getElementById('ok').classList.add('show');e.target.querySelector('button').style.display='none';}
+</script>
+</body>
+</html>

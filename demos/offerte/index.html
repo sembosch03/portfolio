@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Offerte-generator — automatiseringstool</title>
+<meta name="description" content="Werkende demo: genereer in seconden een nette, printbare offerte (PDF) vanuit een formulier. Voorbeeld van automatisering voor ondernemers.">
+<style>
+  :root{
+    --bg:#0e1117; --surface:#161b24; --surface2:#1d2430; --border:#2a323f;
+    --text:#eef2f8; --muted:#93a0b4; --accent:#4ade80; --accent-d:#22c55e; --blue:#60a5fa;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  .top{border-bottom:1px solid var(--border);background:rgba(14,17,23,.85);backdrop-filter:blur(10px);position:sticky;top:0;z-index:30;}
+  .top .inner{max-width:1180px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;}
+  .top .logo{font-weight:800;letter-spacing:-.02em;}
+  .top .logo span{color:var(--accent);}
+  .top a.back{font-size:.85rem;color:var(--muted);}
+  .top a.back:hover{color:var(--text);}
+
+  .hd{max-width:1180px;margin:0 auto;padding:36px 24px 8px;}
+  .hd h1{font-size:clamp(1.5rem,1rem+2vw,2.2rem);letter-spacing:-.02em;}
+  .hd p{color:var(--muted);max-width:640px;margin-top:8px;}
+  .hd .pill{display:inline-block;margin-top:14px;font-size:.78rem;color:var(--accent);border:1px solid var(--border);border-radius:999px;padding:5px 12px;}
+
+  .layout{max-width:1180px;margin:0 auto;padding:24px;display:grid;grid-template-columns:380px 1fr;gap:28px;align-items:start;}
+  @media(max-width:880px){.layout{grid-template-columns:1fr;}}
+
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;}
+  .panel h2{font-size:1rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:18px;}
+  label{display:block;font-size:.82rem;font-weight:600;margin:14px 0 6px;color:var(--text);}
+  input,textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface2);color:var(--text);font-size:.92rem;font-family:inherit;}
+  input:focus,textarea:focus{outline:none;border-color:var(--accent);}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+
+  .lines{margin-top:8px;}
+  .line{display:grid;grid-template-columns:1fr 70px 90px 30px;gap:8px;margin-bottom:8px;align-items:center;}
+  .line input{padding:8px 10px;font-size:.85rem;}
+  .line .del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.1rem;line-height:1;}
+  .line .del:hover{color:#f87171;}
+  .add{margin-top:6px;background:var(--surface2);border:1px dashed var(--border);color:var(--accent);border-radius:8px;padding:9px;width:100%;cursor:pointer;font-weight:600;font-size:.85rem;}
+  .add:hover{border-color:var(--accent);}
+
+  .btns{display:flex;gap:10px;margin-top:18px;}
+  .btn{flex:1;padding:12px;border:none;border-radius:10px;font-weight:700;cursor:pointer;font-size:.92rem;transition:transform .2s,box-shadow .2s;}
+  .btn-primary{background:var(--accent);color:#08130c;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(74,222,128,.3);}
+  .btn-ghost{background:var(--surface2);color:var(--text);border:1px solid var(--border);}
+
+  .doc-wrap{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;}
+  .doc{background:#fff;color:#1a1a1a;border-radius:10px;padding:44px;font-size:14px;line-height:1.55;box-shadow:0 12px 40px rgba(0,0,0,.4);}
+  .doc .d-top{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid #4ade80;padding-bottom:20px;margin-bottom:24px;}
+  .doc .biz{font-size:1.5rem;font-weight:800;color:#111;}
+  .doc .biz small{display:block;font-size:.72rem;font-weight:600;color:#888;letter-spacing:.05em;text-transform:uppercase;margin-top:2px;}
+  .doc .meta{text-align:right;font-size:.82rem;color:#555;}
+  .doc .meta b{color:#111;font-size:1.1rem;}
+  .doc h3{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#999;margin:18px 0 6px;}
+  .doc .to{font-weight:700;font-size:1.05rem;color:#111;}
+  table.items{width:100%;border-collapse:collapse;margin-top:18px;}
+  table.items th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:#999;border-bottom:2px solid #eee;padding:8px 6px;}
+  table.items th.r,table.items td.r{text-align:right;}
+  table.items td{padding:10px 6px;border-bottom:1px solid #f0f0f0;}
+  .totals{margin-top:16px;margin-left:auto;width:260px;font-size:.9rem;}
+  .totals .tr{display:flex;justify-content:space-between;padding:6px 0;}
+  .totals .grand{border-top:2px solid #111;margin-top:6px;padding-top:10px;font-weight:800;font-size:1.15rem;}
+  .doc .foot{margin-top:30px;padding-top:16px;border-top:1px solid #eee;font-size:.78rem;color:#888;}
+
+  @media print{
+    body *{visibility:hidden;}
+    #doc, #doc *{visibility:visible;}
+    #doc{position:absolute;left:0;top:0;width:100%;box-shadow:none;border-radius:0;padding:30px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="top"><div class="inner">
+  <div class="logo">Offerte<span>·gen</span></div>
+  <a class="back" href="../../index.html">← terug naar portfolio</a>
+</div></div>
+
+<div class="hd">
+  <h1>Offerte-generator</h1>
+  <p>Werkende demo van een automatiseringstool: typ de gegevens links, de offerte rechts wordt live opgebouwd. Eén klik → printen of opslaan als PDF. Dit soort tools bespaart ondernemers uren handwerk per week.</p>
+  <span class="pill">● Live demo — alle berekeningen werken</span>
+</div>
+
+<div class="layout">
+  <div class="panel">
+    <h2>Gegevens</h2>
+    <label>Jouw bedrijfsnaam</label>
+    <input id="biz" value="Daniel Agrici — Webdevelopment" oninput="render()">
+    <label>Offertenummer</label>
+    <input id="num" value="2026-001" oninput="render()">
+
+    <label>Klant</label>
+    <input id="client" value="Bistro Vennep" oninput="render()">
+    <div class="row">
+      <div><label>Datum</label><input type="date" id="date" oninput="render()"></div>
+      <div><label>Geldig tot</label><input type="date" id="valid" oninput="render()"></div>
+    </div>
+
+    <label>Regels (omschrijving · aantal · prijs)</label>
+    <div class="lines" id="lines"></div>
+    <button class="add" onclick="addLine()">+ Regel toevoegen</button>
+
+    <label>BTW %</label>
+    <input id="vat" type="number" value="21" oninput="render()">
+
+    <label>Opmerking</label>
+    <textarea id="note" rows="2" oninput="render()">50% bij akkoord, 50% bij oplevering. Levertijd: 1 week.</textarea>
+
+    <div class="btns">
+      <button class="btn btn-primary" onclick="window.print()">🖨️ Print / PDF</button>
+      <button class="btn btn-ghost" onclick="resetLines()">↺ Reset</button>
+    </div>
+  </div>
+
+  <div class="doc-wrap">
+    <div class="doc" id="doc">
+      <div class="d-top">
+        <div><div class="biz" id="o-biz"></div><small>Software &amp; Webdevelopment</small></div>
+        <div class="meta"><b>OFFERTE</b><br><span id="o-num"></span></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;gap:30px;">
+        <div><h3>Voor</h3><div class="to" id="o-client"></div></div>
+        <div style="text-align:right;"><h3>Datum</h3><div id="o-date"></div><h3 style="margin-top:10px;">Geldig tot</h3><div id="o-valid"></div></div>
+      </div>
+      <table class="items">
+        <thead><tr><th>Omschrijving</th><th class="r">Aantal</th><th class="r">Prijs</th><th class="r">Totaal</th></tr></thead>
+        <tbody id="o-rows"></tbody>
+      </table>
+      <div class="totals">
+        <div class="tr"><span>Subtotaal</span><span id="o-sub"></span></div>
+        <div class="tr"><span>BTW (<span id="o-vatp"></span>%)</span><span id="o-vat"></span></div>
+        <div class="tr grand"><span>Totaal</span><span id="o-grand"></span></div>
+      </div>
+      <div class="foot" id="o-note"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const fmt = n => '€ ' + n.toLocaleString('nl-NL',{minimumFractionDigits:2,maximumFractionDigits:2});
+  let lines = [
+    {desc:'Website / landingspagina (mobiel-vriendelijk)', qty:1, price:650},
+    {desc:'Contactformulier + Google-vindbaarheid', qty:1, price:150},
+  ];
+
+  function renderLines(){
+    const c = document.getElementById('lines'); c.innerHTML='';
+    lines.forEach((l,i)=>{
+      const d=document.createElement('div'); d.className='line';
+      d.innerHTML=`
+        <input value="${l.desc.replace(/"/g,'&quot;')}" oninput="upd(${i},'desc',this.value)" placeholder="Omschrijving">
+        <input type="number" value="${l.qty}" oninput="upd(${i},'qty',this.value)" placeholder="Aantal">
+        <input type="number" value="${l.price}" oninput="upd(${i},'price',this.value)" placeholder="Prijs">
+        <button class="del" onclick="rm(${i})" title="Verwijder">×</button>`;
+      c.appendChild(d);
+    });
+  }
+  function upd(i,k,v){ lines[i][k] = (k==='desc')?v:parseFloat(v||0); render(); }
+  function addLine(){ lines.push({desc:'',qty:1,price:0}); renderLines(); render(); }
+  function rm(i){ lines.splice(i,1); renderLines(); render(); }
+  function resetLines(){ lines=[{desc:'Website / landingspagina',qty:1,price:650}]; renderLines(); render(); }
+
+  function nlDate(v){ if(!v) return '—'; const [y,m,d]=v.split('-'); return `${d}-${m}-${y}`; }
+
+  function render(){
+    document.getElementById('o-biz').textContent = document.getElementById('biz').value;
+    document.getElementById('o-num').textContent = 'Nr. ' + document.getElementById('num').value;
+    document.getElementById('o-client').textContent = document.getElementById('client').value;
+    document.getElementById('o-date').textContent = nlDate(document.getElementById('date').value);
+    document.getElementById('o-valid').textContent = nlDate(document.getElementById('valid').value);
+
+    let sub=0; const rows=document.getElementById('o-rows'); rows.innerHTML='';
+    lines.forEach(l=>{
+      const tot=(l.qty||0)*(l.price||0); sub+=tot;
+      const tr=document.createElement('tr');
+      tr.innerHTML=`<td>${l.desc||'—'}</td><td class="r">${l.qty||0}</td><td class="r">${fmt(l.price||0)}</td><td class="r">${fmt(tot)}</td>`;
+      rows.appendChild(tr);
+    });
+    const vatp=parseFloat(document.getElementById('vat').value||0);
+    const vat=sub*vatp/100;
+    document.getElementById('o-sub').textContent=fmt(sub);
+    document.getElementById('o-vatp').textContent=vatp;
+    document.getElementById('o-vat').textContent=fmt(vat);
+    document.getElementById('o-grand').textContent=fmt(sub+vat);
+    document.getElementById('o-note').textContent=document.getElementById('note').value;
+  }
+
+  const t=new Date(), v=new Date(Date.now()+30*864e5);
+  document.getElementById('date').value=t.toISOString().slice(0,10);
+  document.getElementById('valid').value=v.toISOString().slice(0,10);
+  renderLines(); render();
+</script>
+</body>
+</html>
