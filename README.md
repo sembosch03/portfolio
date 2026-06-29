@@ -1,4 +1,4 @@
-# Portfolio — Daniel Agrici
+# Portfolio — Sem Bosch
 
 Persoonlijke portfolio + verkoop-site. Eén `index.html` (statisch, geen build) plus 3 werkende demo-projecten.
 
@@ -26,7 +26,7 @@ In `index.html`, onderaan bij `<!-- VUL JE EIGEN GEGEVENS IN -->`:
 | `wa.me/31600000000` | je 06 als `316XXXXXXXX` (zonder +) |
 | `tel:+31600000000` | je 06 als `+316XXXXXXXX` |
 
-Klopt de naam "Daniel Agrici" niet? Zoek + vervang in `index.html` en de footers van de demo's.
+Klopt de naam "Sem Bosch" niet? Zoek + vervang in `index.html` en de footers van de demo's.
 
 ## Gratis online zetten (10 min)
 
