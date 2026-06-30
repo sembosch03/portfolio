@@ -5,11 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sem Bosch — Software Developer | Websites & automatisering voor MKB</title>
 <meta name="description" content="Software developer uit Hoofddorp. Ik bouw snelle websites, automatiseringen en bugfixes voor lokale ondernemers. Vaste prijs, geen abonnement.">
+<link rel="canonical" href="https://sembosch03.github.io/portfolio/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 
 <!-- ====== OPEN GRAPH (voor delen op WhatsApp/LinkedIn) ====== -->
 <meta property="og:title" content="Sem Bosch — Software Developer">
 <meta property="og:description" content="Websites & automatisering voor MKB. Vaste prijs, snelle oplevering.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://sembosch03.github.io/portfolio/">
+<meta property="og:image" content="https://sembosch03.github.io/portfolio/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
 
 <style>
   /* ============ DESIGN TOKENS ============ */
@@ -176,11 +182,12 @@
   </div>
 </nav>
 
+<main id="main-content">
 <!-- ============ HERO ============ -->
 <header class="hero">
   <div class="wrap">
     <div class="badge"><span class="dot"></span> Beschikbaar voor nieuwe projecten</div>
-    <h1>Ik bouw <em>snelle websites</em> &amp; slimme automatiseringen voor lokale ondernemers.</h1>
+    <h1>Websites &amp; automatisering voor MKB in <em>Hoofddorp</em> — vaste prijs, binnen een week.</h1>
     <p class="lead">Software developer uit Hoofddorp. Vaste prijs, geen abonnement, oplevering binnen een week. Jij levert je logo aan — ik regel de rest.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn btn-primary">Start een project →</a>
@@ -249,7 +256,7 @@
     <div class="sec-head reveal">
       <div class="kicker">Portfolio</div>
       <h2>Recent werk</h2>
-      <p>Een greep uit mijn projecten. <!-- VERVANG deze cases zodra je echte klanten hebt --></p>
+      <p>Een greep uit mijn projecten.</p>
     </div>
     <div class="grid">
       <a href="demos/restaurant/index.html" target="_blank" class="proj-card reveal">
@@ -319,6 +326,8 @@
   </div>
 </section>
 
+</main>
+
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
@@ -335,6 +344,26 @@
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold:0.12 });
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["Person", "LocalBusiness"],
+  "name": "Sem Bosch",
+  "jobTitle": "Software Developer",
+  "url": "https://sembosch03.github.io/portfolio/",
+  "telephone": "+31621971441",
+  "email": "sembosch9@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Hoofddorp",
+    "addressRegion": "Noord-Holland",
+    "addressCountry": "NL"
+  },
+  "areaServed": "Haarlemmermeer",
+  "priceRange": "€€",
+  "knowsAbout": ["Webdesign", "Automatisering", "JavaScript", "Python", "React"]
+}
 </script>
 </body>
 </html>
