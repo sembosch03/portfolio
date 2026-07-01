@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Van Dijk Schilder- &amp; Klusbedrijf — Hoofddorp</title>
+<meta name="description" content="Van Dijk Schilder- &amp; Klusbedrijf — schilderwerk binnen en buiten, loodgieterswerk en klein onderhoud in Hoofddorp en omgeving. Gratis offerte binnen 24 uur.">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --bg:#f7f5f1; --ink:#1c1f26; --muted:#5c6270; --card:#fff; --border:#e4e0d8;
+    --accent:#d97706; --accent-dark:#b45309; --navy:#1e3a5f;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  section{padding:clamp(56px,8vw,104px) 0;}
+  .icon{width:1.6rem;height:1.6rem;stroke:var(--accent);stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;fill:none;flex-shrink:0;}
+  .icon-lg{width:2.2rem;height:2.2rem;}
+
+  /* ============ NAV ============ */
+  nav{position:sticky;top:0;z-index:40;background:rgba(247,245,241,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px;}
+  .logo{font-weight:800;letter-spacing:-.02em;font-size:1.1rem;}
+  .logo span{color:var(--accent);}
+  .nlinks{display:flex;align-items:center;gap:26px;font-size:.92rem;}
+  .nlinks a:not(.btn){color:var(--muted);transition:color .2s;}
+  .nlinks a:not(.btn):hover{color:var(--ink);}
+  @media(max-width:700px){.nlinks a:not(.btn){display:none;}}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;min-height:44px;border-radius:10px;font-weight:700;font-size:.95rem;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .2s;cursor:pointer;}
+  .btn .icon{width:1.1rem;height:1.1rem;stroke:currentColor;}
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-primary:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 10px 28px rgba(217,119,6,.3);}
+  .btn-ghost{border:1.5px solid var(--border);color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+
+  /* ============ HERO ============ */
+  .hero{position:relative;overflow:hidden;}
+  .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(700px 420px at 85% -10%,rgba(217,119,6,.12),transparent 70%);}
+  .hero .wrap{padding-top:clamp(56px,9vw,96px);}
+  .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--border);border-radius:999px;font-size:.82rem;color:var(--muted);margin-bottom:26px;background:var(--card);}
+  .badge .dot{width:8px;height:8px;border-radius:50%;background:#16a34a;box-shadow:0 0 8px #16a34a;}
+  .hero h1{font-size:clamp(2.2rem,1rem+5.5vw,4.4rem);line-height:1.05;letter-spacing:-.02em;font-weight:800;margin-bottom:22px;max-width:760px;}
+  .hero h1 em{font-style:normal;color:var(--accent);}
+  .hero p.lead{font-size:clamp(1.02rem,.95rem+.4vw,1.2rem);color:var(--muted);max-width:600px;margin-bottom:32px;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+
+  .trust{display:flex;gap:36px;margin-top:52px;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:28px;}
+  .trust-item{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--muted);}
+  .trust-item b{color:var(--ink);}
+
+  /* ============ SECTION HEADS ============ */
+  .sec-head{margin-bottom:44px;}
+  .sec-head .k{color:var(--accent);font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;}
+  .sec-head h2{font-size:clamp(1.7rem,1rem+2.6vw,2.6rem);letter-spacing:-.02em;margin-top:10px;}
+  .sec-head p{color:var(--muted);max-width:560px;margin-top:12px;}
+
+  /* ============ DIENSTEN ============ */
+  .grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:30px 26px;transition:transform .3s var(--ease),border-color .3s;}
+  .card:hover{transform:translateY(-6px);border-color:var(--accent);}
+  .card .icon{margin-bottom:16px;}
+  .card h3{font-size:1.12rem;margin-bottom:8px;letter-spacing:-.01em;}
+  .card p{color:var(--muted);font-size:.9rem;}
+
+  /* ============ WERK (voor/na) ============ */
+  .werk{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .job-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:transform .3s var(--ease),border-color .3s;}
+  .job-card:hover{transform:translateY(-6px);border-color:var(--accent);}
+  .job-thumb{aspect-ratio:16/10;background:linear-gradient(135deg,#efe9de,#e4dccb);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);}
+  .job-body{padding:22px;}
+  .job-body .tag{font-size:.76rem;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;font-weight:700;}
+  .job-body h3{font-size:1.05rem;margin:8px 0 6px;}
+  .job-body p{color:var(--muted);font-size:.88rem;}
+
+  /* ============ REVIEWS ============ */
+  .review-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;}
+  .stars{display:flex;gap:3px;margin-bottom:14px;}
+  .stars svg{width:1rem;height:1rem;fill:var(--accent);}
+  .review-card p{color:var(--ink);font-size:.94rem;margin-bottom:16px;}
+  .review-who{font-size:.85rem;color:var(--muted);font-weight:700;}
+
+  /* ============ SPOED BANNER ============ */
+  .spoed{background:var(--navy);color:#fff;border-radius:20px;padding:clamp(28px,4vw,40px);display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:space-between;}
+  .spoed .txt{display:flex;align-items:center;gap:16px;}
+  .spoed .icon{stroke:#fff;}
+  .spoed h3{font-size:1.15rem;margin-bottom:4px;}
+  .spoed p{color:#c8d3e0;font-size:.9rem;}
+  .spoed .btn-primary{background:#fff;color:var(--navy);}
+  .spoed .btn-primary:hover{background:#f1f1f1;box-shadow:none;}
+
+  /* ============ OFFERTE FORM ============ */
+  .offerte-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:clamp(32px,5vw,56px);}
+  .offerte-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:640px){.offerte-grid{grid-template-columns:1fr;}}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  .field label{font-size:.85rem;font-weight:700;color:var(--ink);}
+  .field input,.field select,.field textarea{padding:13px 14px;min-height:44px;border:1px solid var(--border);border-radius:10px;font-size:.95rem;font-family:inherit;background:var(--bg);color:var(--ink);}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent);}
+  .field.full{grid-column:1/-1;}
+  .offerte-box button[type="submit"]{margin-top:18px;width:100%;justify-content:center;border:none;font-family:inherit;}
+  .ok{display:none;margin-top:14px;font-weight:700;background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0;padding:14px;border-radius:10px;text-align:center;}
+  .ok.show{display:block;}
+
+  /* ============ FOOTER ============ */
+  footer{border-top:1px solid var(--border);padding:32px 0;color:var(--muted);font-size:.86rem;}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  .demo-flag{position:fixed;bottom:14px;left:14px;z-index:99;background:var(--ink);border:1px solid var(--border);color:#fff;padding:8px 14px;border-radius:999px;font-size:.75rem;}
+  .demo-flag a{color:#fbbf24;font-weight:700;}
+
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
+  .reveal.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;}html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Van Dijk <span>Schilder &amp; Klus</span></div>
+    <div class="nlinks">
+      <a href="#diensten">Diensten</a>
+      <a href="#werk">Ons werk</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#offerte" class="btn btn-primary">Gratis offerte</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero"><div class="wrap">
+  <div class="badge"><span class="dot"></span> Vandaag nog bereikbaar — reactie binnen 24u</div>
+  <h1>Schilderwerk, loodgieterswerk en klein onderhoud — <em>vakwerk waar je op kunt bouwen.</em></h1>
+  <p class="lead">Van Dijk Schilder- &amp; Klusbedrijf helpt huiseigenaren en bedrijven in Hoofddorp en omgeving met binnen- en buitenschilderwerk, kleine loodgietersklussen en algemeen onderhoud. Vaste prijsafspraak vooraf, geen verrassingen achteraf.</p>
+  <div class="hero-actions">
+    <a href="#offerte" class="btn btn-primary">Gratis offerte aanvragen →</a>
+    <a href="tel:+31231234567" class="btn btn-ghost">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.712 1.596l-.465.355a1 1 0 0 0-.31 1.222 13 13 0 0 0 6.319 6.39Z"/></svg>
+      Bel direct
+    </a>
+  </div>
+  <div class="trust">
+    <div class="trust-item"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> <span><b>Verzekerd</b> &amp; garantie op werk</span></div>
+    <div class="trust-item"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> <span><b>15+ jaar</b> ervaring in de regio</span></div>
+    <div class="trust-item"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="10" height="6" rx="1"/><path d="M9 10v4"/><rect x="6" y="14" width="6" height="6" rx="1"/></svg> <span><b>Vaste prijs</b>, helft vooraf</span></div>
+  </div>
+</div></header>
+
+<!-- ============ DIENSTEN ============ -->
+<section id="diensten"><div class="wrap">
+  <div class="sec-head reveal"><div class="k">Wat wij doen</div><h2>Diensten</h2><p>Eén aanspreekpunt voor schilderwerk, kleine loodgietersklussen en onderhoud.</p></div>
+  <div class="grid">
+    <div class="card reveal">
+      <svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="10" height="6" rx="1"/><path d="M9 10v4"/><rect x="6" y="14" width="6" height="6" rx="1"/></svg>
+      <h3>Schilderwerk binnen</h3>
+      <p>Muren, plafonds en kozijnen strak in de verf — inclusief voorbereiding en afwerking.</p>
+    </div>
+    <div class="card reveal">
+      <svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg>
+      <h3>Schilderwerk buiten</h3>
+      <p>Gevels, kozijnen en houtwerk beschermd tegen weer en wind, met kwaliteitsverf.</p>
+    </div>
+    <div class="card reveal">
+      <svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
+      <h3>Loodgieterswerk</h3>
+      <p>Lekkages verhelpen, leidingwerk vervangen en ontstoppen — snel en netjes opgelost.</p>
+    </div>
+    <div class="card reveal">
+      <svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      <h3>Klein onderhoud</h3>
+      <p>Vastzittende deuren, kitwerk, kleine reparaties — de klussen die blijven liggen.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ WERK (voor/na) ============ -->
+<section id="werk" class="werk"><div class="wrap">
+  <div class="sec-head reveal"><div class="k">Portfolio</div><h2>Recent werk</h2><p>Een greep uit afgeronde klussen in Hoofddorp en omgeving.</p></div>
+  <div class="grid">
+    <div class="job-card reveal">
+      <div class="job-thumb"><svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="10" height="6" rx="1"/><path d="M9 10v4"/><rect x="6" y="14" width="6" height="6" rx="1"/></svg></div>
+      <div class="job-body"><div class="tag">Schilderwerk buiten</div><h3>Gevelrenovatie jaren-30 woning</h3><p>Volledige buitenkozijnen geschuurd, gegrond en 2x afgelakt in 3 werkdagen.</p></div>
+    </div>
+    <div class="job-card reveal">
+      <div class="job-thumb"><svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg></div>
+      <div class="job-body"><div class="tag">Loodgieterswerk</div><h3>Lekkage badkamer verholpen</h3><p>Zelfde dag ter plaatse, oorzaak gevonden en leiding vervangen zonder wachttijd.</p></div>
+    </div>
+    <div class="job-card reveal">
+      <div class="job-thumb"><svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div>
+      <div class="job-body"><div class="tag">Schilderwerk binnen</div><h3>Complete woonkamer + trapgat</h3><p>Muren, plafond en trapgat in 2 dagen strak afgewerkt, klant erbij tijdens kleurkeuze.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ REVIEWS ============ -->
+<section id="reviews"><div class="wrap">
+  <div class="sec-head reveal"><div class="k">Klanten</div><h2>Wat klanten zeggen</h2></div>
+  <div class="grid">
+    <div class="review-card reveal">
+      <div class="stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+      </div>
+      <p>"Snel langsgekomen voor onze lekkage en meteen goed opgelost. Prijs vooraf duidelijk, geen verrassingen."</p>
+      <div class="review-who">— Marieke, Hoofddorp</div>
+    </div>
+    <div class="review-card reveal">
+      <div class="stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+      </div>
+      <p>"Buitenschilderwerk netjes en op tijd afgerond. Ruimt ook zelf alles goed op na afloop."</p>
+      <div class="review-who">— Peter, Nieuw-Vennep</div>
+    </div>
+    <div class="review-card reveal">
+      <div class="stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+      </div>
+      <p>"Fijn dat je voor meerdere klussen dezelfde vakman kan bellen. Scheelt gedoe met losse partijen."</p>
+      <div class="review-who">— Sanne, Badhoevedorp</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ SPOED ============ -->
+<section><div class="wrap">
+  <div class="spoed reveal">
+    <div class="txt">
+      <svg class="icon icon-lg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <div><h3>Waterschade of lekkage? Spoedservice binnen 24u.</h3><p>Bel direct — we plannen dezelfde of volgende dag in.</p></div>
+    </div>
+    <a href="tel:+31231234567" class="btn btn-primary">Bel spoedlijn</a>
+  </div>
+</div></section>
+
+<!-- ============ OFFERTE ============ -->
+<section id="offerte"><div class="wrap">
+  <div class="sec-head reveal"><div class="k">Aanvragen</div><h2>Gratis offerte</h2><p>Vertel kort wat er moet gebeuren — reactie binnen 24 uur met een vaste prijs.</p></div>
+  <div class="offerte-box reveal">
+    <form class="offerte-grid" onsubmit="verstuurOfferte(event)">
+      <div class="field"><label for="naam">Naam</label><input id="naam" required placeholder="Je naam"></div>
+      <div class="field"><label for="tel">Telefoonnummer</label><input id="tel" required type="tel" placeholder="06 - 12345678"></div>
+      <div class="field full"><label for="type">Type klus</label>
+        <select id="type" required>
+          <option value="">Kies een categorie</option>
+          <option>Schilderwerk binnen</option>
+          <option>Schilderwerk buiten</option>
+          <option>Loodgieterswerk / lekkage</option>
+          <option>Klein onderhoud</option>
+          <option>Anders</option>
+        </select>
+      </div>
+      <div class="field full"><label for="bericht">Korte omschrijving</label><textarea id="bericht" rows="4" placeholder="Bijv. buitenkozijnen schilderen, ca. 8 ramen"></textarea></div>
+      <div class="field full">
+        <button type="submit" class="btn btn-primary">Vraag gratis offerte aan</button>
+        <div class="ok" id="ok">✓ Bedankt! We nemen binnen 24 uur contact op met een vaste prijs.</div>
+      </div>
+    </form>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div>© <span id="yr"></span> Van Dijk Schilder- &amp; Klusbedrijf — Hoofddorp</div>
+  <div>KVK 00000000 · 023 - 123 45 67</div>
+</div></footer>
+
+<div class="demo-flag">Demo-project · <a href="../../index.html">← terug naar portfolio</a></div>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  function verstuurOfferte(e){
+    e.preventDefault();
+    document.getElementById('ok').classList.add('show');
+    e.target.querySelector('button[type="submit"]').style.display='none';
+  }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold:0.12 });
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

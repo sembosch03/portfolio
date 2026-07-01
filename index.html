@@ -45,6 +45,10 @@
     overflow-x: hidden;
   }
   a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  .icon-svg { width: 1.6rem; height: 1.6rem; stroke: var(--accent); stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; fill: none; flex-shrink: 0; }
+  .proj-thumb .icon-svg { width: 2.4rem; height: 2.4rem; }
+  .btn .icon-svg { width: 1.1rem; height: 1.1rem; stroke: currentColor; }
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
   section { padding: clamp(60px, 9vw, 120px) 0; }
 
@@ -70,7 +74,8 @@
   .nav-links a { color: var(--text-dim); transition: color .2s; }
   .nav-links a:hover { color: var(--text); }
   .nav-cta {
-    padding:9px 18px; border-radius:999px; background:var(--accent-grad);
+    padding:9px 18px; min-height:44px; display:inline-flex; align-items:center;
+    border-radius:999px; background:var(--accent-grad);
     color:#0c0e14 !important; font-weight:700; font-size:.9rem;
     transition: transform .25s var(--ease), box-shadow .25s var(--ease);
   }
@@ -211,7 +216,7 @@
     </div>
     <div class="grid">
       <div class="card reveal">
-        <div class="icon">🌐</div>
+        <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>
         <h3>Website / landingspagina</h3>
         <p>Een snelle, mobiel-vriendelijke site waarmee klanten je via Google vinden.</p>
         <div class="price">vanaf €500</div>
@@ -223,7 +228,7 @@
         </ul>
       </div>
       <div class="card reveal">
-        <div class="icon">⚙️</div>
+        <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></div>
         <h3>Automatisering</h3>
         <p>Saai handwerk wegautomatiseren: offertes, e-mails, voorraad, koppelingen.</p>
         <div class="price">vanaf €500</div>
@@ -235,7 +240,7 @@
         </ul>
       </div>
       <div class="card reveal">
-        <div class="icon">🛠️</div>
+        <div class="icon"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
         <h3>Bugfix &amp; onderhoud</h3>
         <p>Bestaande site/app kapot, traag of niet mobiel? Ik fix het snel.</p>
         <div class="price">vanaf €300</div>
@@ -260,7 +265,7 @@
     </div>
     <div class="grid">
       <a href="demos/restaurant/index.html" target="_blank" class="proj-card reveal">
-        <div class="proj-thumb">🍽️</div>
+        <div class="proj-thumb"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></div>
         <div class="proj-body">
           <div class="tag">Website</div>
           <h3>Restaurant-landingspagina</h3>
@@ -270,7 +275,7 @@
         </div>
       </a>
       <a href="demos/offerte/index.html" target="_blank" class="proj-card reveal">
-        <div class="proj-thumb">📊</div>
+        <div class="proj-thumb"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></div>
         <div class="proj-body">
           <div class="tag">Automatisering</div>
           <h3>Offerte-generator</h3>
@@ -280,11 +285,21 @@
         </div>
       </a>
       <a href="demos/sportschool/index.html" target="_blank" class="proj-card reveal">
-        <div class="proj-thumb">💪</div>
+        <div class="proj-thumb"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.4 14.4 9.6 9.6"/><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.828-2.829l6.364-6.364a2 2 0 1 1 2.828 2.829l-1.768 1.767a2 2 0 1 1 2.829 2.828z"/><path d="m21.5 21.5-1.4-1.4"/><path d="M3.9 3.9 2.5 2.5"/><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"/></svg></div>
         <div class="proj-body">
           <div class="tag">Website</div>
           <h3>Sportschool-site</h3>
           <p>Strakke site met lesrooster, abonnementen en werkend inschrijfformulier.</p>
+          <div class="proj-tech"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+          <span class="demo-link">Bekijk live demo →</span>
+        </div>
+      </a>
+      <a href="demos/vakman/index.html" target="_blank" class="proj-card reveal">
+        <div class="proj-thumb"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="10" height="6" rx="1"/><path d="M9 10v4"/><rect x="6" y="14" width="6" height="6" rx="1"/></svg></div>
+        <div class="proj-body">
+          <div class="tag">Website</div>
+          <h3>Schilder- &amp; klusbedrijf-site</h3>
+          <p>Vertrouwenwekkende site voor vakmensen: diensten, werk, reviews en offerteformulier.</p>
           <div class="proj-tech"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
           <span class="demo-link">Bekijk live demo →</span>
         </div>
@@ -318,9 +333,9 @@
       <p>Vertel kort wat je nodig hebt — ik reageer binnen 24 uur met een vaste prijs en planning.</p>
       <div class="contact-actions">
         <!-- VUL JE EIGEN GEGEVENS IN bij de links hieronder -->
-        <a href="mailto:sembosch9@gmail.com?subject=Project%20aanvraag" class="btn btn-primary">✉️ Mail mij</a>
-        <a href="https://wa.me/31621971441" target="_blank" rel="noopener" class="btn btn-ghost">💬 WhatsApp</a>
-        <a href="tel:+31621971441" class="btn btn-ghost">📞 Bel mij</a>
+        <a href="mailto:sembosch9@gmail.com?subject=Project%20aanvraag" class="btn btn-primary"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> Mail mij</a>
+        <a href="https://wa.me/31621971441" target="_blank" rel="noopener" class="btn btn-ghost"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg> WhatsApp</a>
+        <a href="tel:+31621971441" class="btn btn-ghost"><svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.712 1.596l-.465.355a1 1 0 0 0-.31 1.222 13 13 0 0 0 6.319 6.39Z"/></svg> Bel mij</a>
       </div>
     </div>
   </div>

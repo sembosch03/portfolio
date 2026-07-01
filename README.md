@@ -1,6 +1,6 @@
 # Portfolio — Sem Bosch
 
-Persoonlijke portfolio + verkoop-site. Eén `index.html` (statisch, geen build) plus 3 werkende demo-projecten.
+Persoonlijke portfolio + verkoop-site. Eén `index.html` (statisch, geen build) plus 4 werkende demo-projecten.
 
 ## Structuur
 
@@ -10,7 +10,8 @@ portfolio/
 ├── demos/
 │   ├── restaurant/         ← demo: restaurant-landingspagina (werkend reserveringsformulier)
 │   ├── sportschool/        ← demo: sportschool-site (rooster + werkend inschrijfformulier)
-│   └── offerte/            ← demo: offerte-generator (live berekening + print/PDF)
+│   ├── offerte/            ← demo: offerte-generator (live berekening + print/PDF)
+│   └── vakman/             ← demo: schilder- & klusbedrijf-site (diensten, werk, reviews, offerteformulier)
 └── README.md
 ```
 
@@ -52,3 +53,4 @@ Elke echte case maakt de volgende klant makkelijker. Vliegwiel.
 - **Restaurant** — sticky nav, menu, openingstijden, reserveringsformulier met bevestiging. Volledig responsive.
 - **Sportschool** — hero, statistieken, lesrooster-tabel, prijskaarten, inschrijfformulier. Neon/sport-stijl.
 - **Offerte-generator** — typ links, offerte rechts wordt live opgebouwd; regels toevoegen/verwijderen, BTW-berekening, datums, één klik naar print/PDF. Toont écht JavaScript-werk.
+- **Vakman (schilder & klusbedrijf)** — vertrouwen-gerichte site: diensten, voor/na-projecten, reviews, spoedbanner, offerteformulier met bevestiging. Bedoeld als pitch-bijlage voor schilder-/loodgieterprospects i.p.v. de generieke portfolio-link.
